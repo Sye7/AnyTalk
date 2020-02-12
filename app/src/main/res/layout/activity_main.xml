@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/swipe_refresh"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.core.widget.NestedScrollView style="@style/RootNestedScrollView">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_root"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/Toolbar.NoPadding"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent">
+
+                        <ImageView
+                            android:id="@+id/ic_settings"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="?selectableItemBackground"
+                            android:padding="16.0dip"
+                            android:src="@drawable/ic_settings"
+                            android:tint="@color/blue_primary"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.6" />
+
+                        <Spinner
+                            android:id="@+id/sr_countries"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0.0dip"
+                            android:layout_marginStart="16.0dip"
+                            android:layout_marginEnd="16.0dip"
+                            android:background="@null"
+                            android:dropDownWidth="250.0dip"
+                            android:gravity="center"
+                            app:layout_constrainedWidth="true"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@id/ic_settings"
+                            app:layout_constraintStart_toEndOf="@+id/wallet_container"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <LinearLayout
+                            android:id="@+id/wallet_container"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="?selectableItemBackground"
+                            android:gravity="center_vertical"
+                            android:padding="16.0dip"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <ImageView
+                                android:id="@+id/walletIcon"
+                                style="@style/SmallImage"
+                                app:srcCompat="@drawable/ic_arrow_back_black_24dp" />
+
+                            <TextView
+                                android:id="@+id/balance_text_view"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8.0dip"
+                                android:textAppearance="@style/Caption" />
+                        </LinearLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.appcompat.widget.Toolbar>
+
+                <LinearLayout
+                    android:id="@+id/select_languages_widget"
+                    android:layout_width="0.0dip"
+                    android:layout_height="wrap_content"
+                    android:elevation="@dimen/default_nano_padding"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:paddingBottom="10dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/senderFlag"
+                        android:layout_width="32.0dip"
+                        android:layout_height="32.0dip"
+                        android:src="@mipmap/ca"
+                        app:civ_border_color="@color/image_border_color"
+                        app:civ_border_width="4.0dip"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/sender_country_name_text_view"
+                        style="@style/DropdownEndText"
+                        android:layout_marginStart="8.0dip"
+                        android:onClick="openCountrySenderActivity"
+                        android:text="Canada"
+                        app:layout_constrainedWidth="true"
+                        app:layout_constraintBottom_toBottomOf="@id/senderFlag"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/senderFlag"
+                        app:layout_constraintTop_toTopOf="@id/senderFlag" />
+
+                    <ImageButton
+                        android:id="@+id/switchLang"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:background="@drawable/reverse_lang"
+                        android:elevation="4dp"
+                        android:onClick="switchLang" />
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/receiverFlag"
+                        android:layout_width="32.0dip"
+                        android:layout_height="32.0dip"
+                        android:src="@mipmap/in"
+                        app:civ_border_color="@color/image_border_color"
+                        app:civ_border_width="4.0dip"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/receiver_country_name_text_view"
+                        style="@style/DropdownEndText"
+                        android:layout_marginStart="8.0dip"
+                        android:onClick="openCountryReceiverActivity"
+                        android:text="India"
+                        app:layout_constrainedWidth="true"
+                        app:layout_constraintBottom_toBottomOf="@id/senderFlag"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/senderFlag"
+                        app:layout_constraintTop_toTopOf="@id/senderFlag" />
+
+
+                </LinearLayout>
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="55.0dip"
+                    android:layout_height="55.0dip"
+                    app:civ_border_color="@color/image_border_color"
+                    app:civ_border_width="4.0dip"
+                    android:id="@+id/call_button"
+                    app:civ_circle_background_color="@color/call_button"
+                    android:text="Call"
+                    android:layout_marginTop="16.0dip"
+                    android:layout_marginBottom="16.0dip"
+                    android:src="@drawable/ic_call_24dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/fab_delete"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/fab_contacts"
+                    app:layout_constraintTop_toBottomOf="@id/numpad_id"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <ImageView
+                    android:id="@+id/fab_contacts"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?selectableItemBackground"
+                    android:padding="16.0dip"
+                    android:src="@drawable/ic_supervisor_account_24dp"
+                    app:layout_constraintBottom_toBottomOf="@id/call_button"
+                    app:layout_constraintEnd_toStartOf="@id/call_button"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_chainStyle="spread"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <ImageView
+                    android:id="@+id/fab_delete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?selectableItemBackground"
+                    android:padding="29.0dip"
+                    app:layout_constraintBottom_toBottomOf="@id/call_button"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@id/call_button"
+                    app:layout_constraintTop_toTopOf="@id/call_button" />
+
+                <com.example.numpad.NumPad
+                    android:id="@+id/numpad_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/phone_number_background" />
+
+                <LinearLayout
+                    android:id="@+id/phone_number_background"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/blue_primary"
+                    android:orientation="vertical"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/select_languages_widget">
+
+                    <EditText
+                        android:id="@+id/phone_number_edit_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16.0dip"
+                        android:layout_marginTop="16.0dip"
+                        android:layout_marginEnd="16.0dip"
+                        android:background="@null"
+                        android:hint="@string/enter_number"
+                        android:inputType="phone"
+                        android:maxLength="20"
+                        android:maxLines="1"
+                        android:textAppearance="@style/H2"
+                        android:textColor="@color/color_white"
+                        android:textColorHint="@color/color_white"
+                        android:transitionName="@string/trans_tv_name"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@id/phone_number_background"
+                        app:layout_constraintTop_toTopOf="@id/phone_number_background" />
+
+                    <TextView
+                        android:id="@+id/tv_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16.0dip"
+                        android:layout_marginTop="8.0dip"
+                        android:layout_marginBottom="16.0dip"
+                        android:alpha="0.8"
+                        android:textColor="@color/color_white"
+                        android:textSize="@dimen/default_medium_text_size"
+                        app:layout_constraintStart_toStartOf="@id/phone_number_edit_text"
+                        app:layout_constraintTop_toBottomOf="@id/phone_number_edit_text" />
+
+                    <LinearLayout
+                        android:id="@+id/add_money_container"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/ic_add_24dp"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:visibility="invisible">
+
+                        <TextView
+                            android:id="@+id/add_money_balance_text_view"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="@style/Caption"
+                            android:textColor="@color/visual_white" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/add_money"
+                            android:textAppearance="@style/H3"
+                            android:textColor="@color/visual_white" />
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+    </RelativeLayout>
+
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

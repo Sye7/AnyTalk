@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="?selectableItemBackground"
+    android:paddingTop="8.0dip"
+    android:paddingBottom="8.0dip">
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/item_flag"
+        android:layout_width="32.0dip"
+        android:layout_height="32.0dip"
+        android:src="@mipmap/ca"
+        app:civ_border_color="@color/image_border_color"
+        app:civ_border_width="4.0dip"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/country_name_text_view"
+        style="@style/DropdownEndText"
+        android:text="Canada"
+        android:layout_marginStart="8.0dip"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintBottom_toBottomOf="@id/item_flag"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/item_flag"
+        app:layout_constraintTop_toTopOf="@id/item_flag" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
